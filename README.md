@@ -1,1 +1,2 @@
-# TradeWithMAK-frontend
+# TradeWithMAK - assignment
+
