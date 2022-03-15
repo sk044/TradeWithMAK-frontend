@@ -59,26 +59,32 @@ export default function Home() {
   };
 
   const submitAdd = () => {
-    const userData = {
-			name: name,
-			username: username,
-			address: address,
-			phoneno: phoneno,
-			email: email,
-			dob: dob
-		  }
-	
-		  if (window.confirm('Add User?')) {
-			axios.post(`https://tradewithmak-server.herokuapp.com/addUser`, userData)
-			  .then(res => {
-				console.log(res.data);  
-			  })
-			  alert("User Added !!");
-        window.location.reload();
-		  } else {
-			// Do nothing!
-        alert("Something went wrong !!")
-		  }
+
+    if(name===""||username===""||address===""||phoneno===0||email===""||dob===""){
+      alert("Please enter all the feilds !!!")
+    }else{
+
+      const userData = {
+        name: name,
+        username: username,
+        address: address,
+        phoneno: phoneno,
+        email: email,
+        dob: dob
+        }
+    
+        if (window.confirm('Add User?')) {
+        axios.post(`https://tradewithmak-server.herokuapp.com/addUser`, userData)
+          .then(res => {
+          console.log(res.data);  
+          })
+          alert("User Added !!");
+          window.location.reload();
+        } else {
+        // Do nothing!
+          alert("Something went wrong !!")
+        }
+    }
 
   }
 
@@ -104,27 +110,34 @@ export default function Home() {
 
   const submitedit = () => {
 
-    const editData = {
-			name: editname,
-			username: editusername,
-			address: editaddress,
-			phoneno: editphoneno,
-			email: editemail,
-			dob: editdob
-		  }
-  
-      if (window.confirm('Update ?')) {
-      // Save User !
-      axios.put(`https://tradewithmak-server.herokuapp.com/updateUser/${editId}`, editData)  
-        .then(res => {  
-        console.log(res.data);  
-        })
-        alert("User Updated !!");
-        window.location.reload();
-      } else {
-      // Do nothing!
-      console.log('Not Saved.');
-      }
+    if(editname===""||editusername===""||editaddress===""||editphoneno===0||editemail===""||editdob===""){
+      alert("Please enter all the feilds !!!")
+    }else{
+
+      const editData = {
+        name: editname,
+        username: editusername,
+        address: editaddress,
+        phoneno: editphoneno,
+        email: editemail,
+        dob: editdob
+        }
+    
+        if (window.confirm('Update ?')) {
+        // Save User !
+        axios.put(`https://tradewithmak-server.herokuapp.com/updateUser/${editId}`, editData)  
+          .then(res => {  
+          console.log(res.data);  
+          })
+          alert("User Updated !!");
+          window.location.reload();
+        } else {
+        // Do nothing!
+        console.log('Not Saved.');
+        }
+
+    }
+
   }
 
   //Delete User
@@ -213,6 +226,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={name}
+              required
               onChange={(e)=>setName(e.target.value)}
             />
             <TextField
@@ -223,6 +237,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={username}
+              required
               onChange={(e)=>setUsername(e.target.value)}
             />
             <TextField
@@ -233,6 +248,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={address}
+              required
               onChange={(e)=>setAddress(e.target.value)}
             />
             <TextField
@@ -244,6 +260,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={phoneno}
+              required
               onChange={(e)=>setPhoneno(e.target.value)}
               helperText="Enter your 10 digit Phone No."
             />
@@ -256,6 +273,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={email}
+              required
               onChange={(e)=>setEmail(e.target.value)}
             />
             <TextField
@@ -267,6 +285,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={dob}
+              required
               onChange={(e)=>setDob(e.target.value)}
             />
           </DialogContent>
@@ -289,6 +308,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editname}
+              required
               onChange={(e)=>seteditName(e.target.value)}
             />
             <TextField
@@ -299,6 +319,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editusername}
+              required
               onChange={(e)=>seteditUsername(e.target.value)}
             />
             <TextField
@@ -309,6 +330,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editaddress}
+              required
               onChange={(e)=>seteditAddress(e.target.value)}
             />
             <TextField
@@ -320,6 +342,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editphoneno}
+              required
               onChange={(e)=>seteditPhoneno(e.target.value)}
               helperText="Enter your 10 digit Phone No."
             />
@@ -332,6 +355,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editemail}
+              required
               onChange={(e)=>seteditEmail(e.target.value)}
             />
             <TextField
@@ -343,6 +367,7 @@ export default function Home() {
               fullWidth
               variant="standard"
               value={editdob}
+              required
               onChange={(e)=>seteditDob(e.target.value)}
             />
           </DialogContent>
